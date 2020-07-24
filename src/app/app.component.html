@@ -1,0 +1,40 @@
+<h1></h1>
+<div>
+  <form [formGroup]='form' (ngSubmit)="enviarFormulario()">
+    <div>
+      <label>Nombre: </label>
+      <input type="text" formControlName="name"/>
+    </div>
+    <div>
+      <label>Apellido: </label>
+      <input type="text" formControlName="ape" />
+    </div>
+    <div>
+      <label>Calle: </label>
+      <input type="text" 
+             formControlName="street" 
+             (keyup)="validaDatos($event)"
+             (blur)="validaDatos()"/>
+    </div>
+    <div>
+      <label>NumInt: </label>
+      <input type="text" 
+             formControlName="numInt"
+             (blur)="validaDatos()"
+             />
+    </div>
+    <div>
+      <label>NumExt: </label>
+      <input type="text" 
+             formControlName="numExt" 
+             (blur)="validaDatos()"
+             />
+    </div>
+    <input type="submit" 
+            [disabled]="!form.valid || !banValidaDatos"
+           value="Enviar formulario">
+    <div *ngIf="!banValidaDatos">
+      <p>Error: La calle con el numInt y numExt no debe ser mayor a los 30 caracteres.</p>
+    </div>             
+  </form>
+</div>
